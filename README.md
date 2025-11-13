@@ -1,77 +1,92 @@
-# Airbnb Clone
+# 🏠 Airbnb Clone
 
-## Comment démarrer le projet
+A modern Airbnb clone built with React, TypeScript, and Vite. This project replicates the core functionality of Airbnb with a clean, responsive UI.
 
-### Prérequis
+![Airbnb Clone Preview](https://via.placeholder.com/1200x600?text=Airbnb+Clone+Preview)
 
-- Node.js (version 18 ou supérieure)
-- npm (version 9 ou supérieure)
+## ✨ Features
+
+- 🏡 Property listings with high-quality images
+- 🔍 Advanced search and filtering
+- 📅 Date range selection with calendar
+- 🌍 Interactive map view with property locations
+- ⭐ Wishlist functionality
+- 📱 Fully responsive design
+- ⚡ Fast performance with Vite
+- 🎨 Beautiful UI with shadcn/ui and Tailwind CSS
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18 or higher
+- npm 9 or higher
 - Git
 
 ### Installation
 
-1. Clonez le dépôt :
+1. Clone the repository:
    ```sh
-   git clone <URL_DU_REPO>
+   git clone https://github.com/yourusername/airbnb-clone.git
    cd airbnb-clone
    ```
 
-2. Installez les dépendances :
+2. Install dependencies:
    ```sh
    npm install
    ```
 
-3. Lancez le serveur de développement :
+3. Start the development server:
    ```sh
    npm run dev
    ```
 
-4. Ouvrez [http://localhost:5173](http://localhost:5173) dans votre navigateur.
+4. Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-## Technologies utilisées
+## 🛠️ Built With
 
-- Vite
-- TypeScript
-- React 18
-- shadcn/ui
-- Tailwind CSS
-- React Leaflet
+- [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling
+- [React 18](https://react.dev/) - A JavaScript library for building user interfaces
+- [TypeScript](https://www.typescriptlang.org/) - TypeScript is a typed superset of JavaScript
+- [shadcn/ui](https://ui.shadcn.com/) - Beautifully designed components
+- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework
+- [React Leaflet](https://react-leaflet.js.org/) - Interactive maps
+- [React Icons](https://react-icons.github.io/react-icons/) - Popular icons for React
 
-## Commandes disponibles
+## 📦 Available Scripts
 
-- `npm run dev` - Lance le serveur de développement
-- `npm run build` - Construit l'application pour la production
-- `npm run preview` - Prévoyez l'application construite localement
-- `npm run lint` - Exécute le linter
+In the project directory, you can run:
 
-## Déploiement
+- `npm run dev` - Start the development server
+- `npm run build` - Build the app for production
+- `npm run preview` - Preview the production build locally
+- `npm run lint` - Run ESLint
+- `npm run format` - Format code with Prettier
 
-Pour déployer ce projet, vous pouvez utiliser votre service d'hébergement préféré tel que Vercel, Netlify ou GitHub Pages.
+## 🌐 Deployment
 
-### Déploiement sur Vercel
+### Vercel
 
-1. Installez Vercel CLI :
-   ```sh
-   npm install -g vercel
-   ```
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fyourusername%2Fairbnb-clone)
 
-2. Déployez :
-   ```sh
-   vercel
-   ```
+### Netlify
 
-### Déploiement sur Netlify
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/yourusername/airbnb-clone)
 
-1. Installez Netlify CLI :
-   ```sh
-   npm install -g netlify-cli
-   ```
+## 📝 License
 
-2. Déployez :
-   ```sh
-   netlify deploy
-   ```
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Contribution
+## 👨‍💻 Author
 
-Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou une pull request.
+- **Akrem Belkahla** - [GitHub](https://github.com/AkremBelkahla)
+
+## 🙏 Acknowledgments
+
+- Inspired by Airbnb
+- Built with amazing open source projects
+- Special thanks to all contributors
+
+---
+
+Développé avec ❤️ par [InfinityWeb.tn](https://infinityweb.tn)
