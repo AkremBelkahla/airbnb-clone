@@ -35,7 +35,11 @@ export function ListingSection({ title, listings }: ListingSectionProps) {
     <section className="mb-12">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-2xl font-semibold">{title}</h2>
+<<<<<<< HEAD
         <div className="hidden md:flex gap-2">
+=======
+        <div className="flex gap-2">
+>>>>>>> 2f2df5f1daf65a94e7bb19d686d7f45e2bf3a0f6
           <Button
             variant="outline"
             size="icon"
@@ -56,11 +60,19 @@ export function ListingSection({ title, listings }: ListingSectionProps) {
       </div>
       <div
         ref={scrollContainerRef}
+<<<<<<< HEAD
         className="flex flex-col gap-6 md:grid md:auto-cols-[calc((100%-6*1rem)/7)] md:grid-flow-col md:gap-4 md:overflow-x-auto md:pb-4 scrollbar-hide transition-all duration-300"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {listings.map((listing) => (
           <div key={listing.id} className="w-full md:min-w-0">
+=======
+        className="grid auto-cols-[calc((100%-6*1rem)/7)] grid-flow-col gap-4 overflow-x-auto scrollbar-hide pb-4 transition-all duration-300"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
+        {listings.map((listing) => (
+          <div key={listing.id} className="min-w-0">
+>>>>>>> 2f2df5f1daf65a94e7bb19d686d7f45e2bf3a0f6
             <ListingCard listing={listing} />
           </div>
         ))}

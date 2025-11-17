@@ -2,8 +2,8 @@
  * Airbnb-style header with navigation and functional search bar
  */
 
-import { useState } from "react";
-import { Heart, Menu, Search, Minus, Plus } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Heart, Menu, X, Search, Minus, Plus, Home, Globe, LogIn, User, HelpCircle, PlusCircle } from "lucide-react";
 import { Button } from "./ui/button";
 import { ThemeToggle } from "./ThemeToggle";
 import { useSearchParams, Link, useNavigate } from "react-router-dom";
@@ -39,7 +39,18 @@ export function Header({ onSearch }: HeaderProps) {
   const [checkInOpen, setCheckInOpen] = useState(false);
   const [checkOutOpen, setCheckOutOpen] = useState(false);
   const [guestsOpen, setGuestsOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const showingFavorites = searchParams.get("favorites") === "1";
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Gestion du scroll pour le header
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const totalGuests = adults + children;
   const guestsText = totalGuests > 0 
@@ -93,14 +104,23 @@ export function Header({ onSearch }: HeaderProps) {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background">
+    <header className={`sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm transition-all ${isScrolled ? 'shadow-sm' : ''}`}>
       {/* Top navigation */}
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex h-20 items-center justify-between">
+        <div className="flex h-16 items-center justify-between md:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center transition-opacity hover:opacity-80">
-            <img src={airbnbLogo} alt="Airbnb" className="h-8" />
-          </Link>
+          <div className="flex items-center gap-4">
+            <button 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="flex h-10 w-10 items-center justify-center rounded-full p-2 transition-colors hover:bg-muted md:hidden"
+              aria-label="Menu"
+            >
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+            <Link to="/" className="flex items-center transition-opacity hover:opacity-80">
+              <img src={airbnbLogo} alt="Airbnb" className="h-6 md:h-8" />
+            </Link>
+          </div>
 
           {/* Center navigation */}
           <nav className="hidden items-center gap-1 md:flex">
@@ -133,32 +153,37 @@ export function Header({ onSearch }: HeaderProps) {
             </Link>
           </nav>
 
-          {/* Favorites button (mobile) */}
-          <button 
-            onClick={toggleFavorites}
-            className="md:hidden flex items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold transition-colors hover:bg-muted"
-          >
-            <Heart className={`h-4 w-4 ${showingFavorites ? "fill-current text-primary" : ""}`} />
-          </button>
-
           {/* Right actions */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
+            {/* Favorites button */}
+            <button 
+              onClick={toggleFavorites}
+              className="flex h-10 w-10 items-center justify-center rounded-full p-2 transition-colors hover:bg-muted md:hidden"
+              aria-label="Favoris"
+            >
+              <Heart className={`h-5 w-5 ${showingFavorites ? "fill-current text-primary" : ""}`} />
+            </button>
+
             <Link to="/devenir-hote">
               <Button variant="ghost" size="sm" className="hidden text-sm font-semibold md:flex">
                 Devenir hôte
               </Button>
             </Link>
-            <ThemeToggle />
-            <LanguageDialog />
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="gap-2 rounded-full px-3 py-2">
-                  <Menu className="h-4 w-4" />
-                  <div className="flex h-7 w-7 items-center justify-center rounded-full bg-muted">
-                    <span className="text-sm">👤</span>
-                  </div>
-                </Button>
-              </DropdownMenuTrigger>
+            
+            <ThemeToggle className="hidden md:flex" />
+            <LanguageDialog className="hidden md:flex" />
+            
+            {/* Menu utilisateur desktop */}
+            <div className="hidden md:block">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" className="gap-2 rounded-full px-3 py-2">
+                    <Menu className="h-4 w-4" />
+                    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-muted">
+                      <User className="h-4 w-4" />
+                    </div>
+                  </Button>
+                </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuItem asChild>
                   <Link to="/inscription" className="cursor-pointer font-semibold">
@@ -192,7 +217,69 @@ export function Header({ onSearch }: HeaderProps) {
                   </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
-            </DropdownMenu>
+              </DropdownMenu>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        <div className={`fixed inset-0 z-40 bg-background transition-all duration-300 ease-in-out md:hidden ${mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+          <div className="flex h-full flex-col overflow-y-auto">
+            <div className="flex-1 space-y-2 p-4">
+              <Link 
+                to="/logements" 
+                className="flex items-center gap-3 rounded-lg px-4 py-3 text-lg font-medium hover:bg-muted"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <Home className="h-5 w-5" />
+                <span>Logements</span>
+              </Link>
+              <Link 
+                to="/experiences" 
+                className="flex items-center gap-3 rounded-lg px-4 py-3 text-lg font-medium hover:bg-muted"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <Globe className="h-5 w-5" />
+                <span>Expériences</span>
+                <span className="ml-auto rounded-full bg-primary px-2 py-0.5 text-xs font-bold text-primary-foreground">
+                  NOUVEAU
+                </span>
+              </Link>
+              <Link 
+                to="/devenir-hote" 
+                className="flex items-center gap-3 rounded-lg px-4 py-3 text-lg font-medium hover:bg-muted"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <PlusCircle className="h-5 w-5" />
+                <span>Devenir hôte</span>
+              </Link>
+              <Link 
+                to="/aide" 
+                className="flex items-center gap-3 rounded-lg px-4 py-3 text-lg font-medium hover:bg-muted"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <HelpCircle className="h-5 w-5" />
+                <span>Centre d'aide</span>
+              </Link>
+              <Link 
+                to="/connexion" 
+                className="mt-4 flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 text-lg font-medium text-primary-foreground hover:bg-primary/90"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <LogIn className="h-5 w-5" />
+                <span>Connexion</span>
+              </Link>
+            </div>
+            
+            <div className="border-t p-4">
+              <div className="flex items-center justify-between text-sm text-muted-foreground">
+                <span>© 2025 Airbnb Clone</span>
+                <div className="flex gap-4">
+                  <ThemeToggle />
+                  <LanguageDialog />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

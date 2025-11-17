@@ -4,7 +4,10 @@
 
 import { useParams, Link } from "react-router-dom";
 import { Heart, Star, Share2, MapPin, Users, Bed, Bath, ChevronLeft, Shield, Calendar, Award, Wifi, Tv, Wind, Snowflake, Utensils, Car, Check, X } from "lucide-react";
+<<<<<<< HEAD
 import { Header } from "@/components/Header";
+=======
+>>>>>>> 2f2df5f1daf65a94e7bb19d686d7f45e2bf3a0f6
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -130,7 +133,10 @@ const ListingDetail = () => {
 
   return (
     <div className="min-h-screen bg-background">
+<<<<<<< HEAD
       <Header />
+=======
+>>>>>>> 2f2df5f1daf65a94e7bb19d686d7f45e2bf3a0f6
       <div className="container mx-auto px-4 py-6 lg:px-20">
         {/* Back button */}
         <Link to="/" className="mb-4 inline-flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary">
