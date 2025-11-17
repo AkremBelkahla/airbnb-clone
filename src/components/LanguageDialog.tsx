@@ -30,14 +30,18 @@ const currencies = [
   { code: "GBP", symbol: "£", name: "Livre sterling" },
 ];
 
-export function LanguageDialog() {
+interface LanguageDialogProps {
+  className?: string;
+}
+
+export function LanguageDialog({ className }: LanguageDialogProps) {
   const [language, setLanguage] = useState("fr");
   const [currency, setCurrency] = useState("EUR");
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="ghost" size="icon" className="hidden md:flex">
+        <Button variant="ghost" size="icon" className={className}>
           <Globe className="h-5 w-5" />
         </Button>
       </DialogTrigger>
